@@ -1,2 +1,2 @@
 # CARE
-Concept-awARE video captioning
+Code will be released upon publication.
