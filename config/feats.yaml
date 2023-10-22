@@ -1,0 +1,69 @@
+ResNeXt_Kinetics:
+  feats_m_name: [motion_resnext101_kinetics_fixed60.hdf5]
+  dim_m: 2048
+SwinBERTDense_Kinetics:
+  feats_m_name: [motion_swinbert_kinetics_cliplen64_dense.hdf5]
+  dim_m: 1024
+VGGish_Audioset:
+  feats_a_name: [audio_vggish_audioset_fixed60.hdf5]
+  dim_a: 128
+SwinBERTDense:
+  # extracted from SwinBERT checkpoints
+  inherit_from: [SwinBERTDense_Kinetics, VGGish_Audioset]
+  feats_i_name: [CLIP_ViT-B-32.hdf5]
+  dim_i: 512
+  load_feats_type: 0
+R101:
+  # ImageNet Pre-training: ResNet-101
+  inherit_from: [ResNeXt_Kinetics, VGGish_Audioset]
+  feats_i_name: [image_R101_fixed60.hdf5]
+  dim_i: 2048
+  load_feats_type: 0
+IRv2:
+  # ImageNet Pre-training: Inception-ResNet101-v2
+  inherit_from: [ResNeXt_Kinetics, VGGish_Audioset]
+  feats_i_name: [image_IRv2_fixed60.hdf5]
+  dim_i: 1536
+  load_feats_type: 0
+RN50:
+  # CLIP: ResNet-50
+  inherit_from: [ResNeXt_Kinetics, VGGish_Audioset]
+  feats_i_name: [CLIP_RN50.hdf5]
+  dim_i: 1024
+  load_feats_type: 0
+RN101:
+  # CLIP: ResNet-101
+  inherit_from: [ResNeXt_Kinetics, VGGish_Audioset]
+  feats_i_name: [CLIP_RN101.hdf5]
+  dim_i: 512
+  load_feats_type: 0
+RN50x4:
+  # CLIP: ResNet-50x4
+  inherit_from: [ResNeXt_Kinetics, VGGish_Audioset]
+  feats_i_name: [CLIP_RN50x4.hdf5]
+  dim_i: 640
+  load_feats_type: 0
+ViT:
+  # CLIP: ViT-B-32
+  inherit_from: [ResNeXt_Kinetics, VGGish_Audioset]
+  feats_i_name: [CLIP_ViT-B-32.hdf5]
+  dim_i: 512
+  load_feats_type: 0
+ViT~ft:
+  # to compare with CLIP4Caption
+  inherit_from: ViT
+  feats_i_name: [CLIP_ViT-B-32_ft.hdf5]
+ViT16:
+  # CLIP: ResNet-50x4
+  inherit_from: [ResNeXt_Kinetics, VGGish_Audioset]
+  feats_i_name: [CLIP_ViT-B-16.hdf5]
+  dim_i: 512
+  load_feats_type: 0
+I3D:
+  # officially released features of the VATdEX dataset 
+  feats_a_name: []
+  feats_m_name: [I3D.hdf5]
+  feats_i_name: []
+  dim_m: 1024
+  modality: 'm'
+  load_feats_type: 1

@@ -1,0 +1,68 @@
+Transformer:
+  decoder: TransformerDecoder
+  cls_head: NaiveHead
+  decoding_type: ARFormer
+  fusion: temporal_concat
+SALSTM:
+  encoder: Embedder
+  decoder: SingleLayerRNNDecoder
+  cls_head: NaiveHead
+  decoding_type: ARFormer
+  fusion: temporal_concat
+  rnn_type: lstm
+  weight_decay: 0.001
+  scheduled_sampling_start: 0
+TopDown:
+  encoder: Embedder
+  decoder: TopDownAttentionRNNDecoder
+  cls_head: NaiveHead
+  decoding_type: ARFormer
+  fusion: temporal_concat
+  rnn_type: lstm
+  weight_decay: 0.001
+  scheduled_sampling_start: 0
+VOE:
+  encoder: VOE
+  # decoder: TransformerDecoder
+  decoder: VOERNNDecoder
+  cls_head: NaiveHead
+  decoding_type: ARFormer
+  fusion: temporal_concat
+  rnn_type: lstm
+  weight_decay: 0.001
+  scheduled_sampling_start: 0
+ARB:
+  encoder: EncoderWithHighWayBN
+  decoder: TransformerDecoder
+  cls_head: NaiveHead
+  decoding_type: ARFormer
+  fusion: temporal_concat
+NAB:
+  encoder: EncoderWithHighWayBN
+  decoder: TransformerDecoder
+  cls_head: NaiveHead
+  decoding_type: NARFormer
+  fusion: temporal_concat
+  length_prediction: True
+  length_beam_size: 6
+  iterations: 5
+  beam_alpha: 1.35
+  algorithm_print_sent: False
+  with_teacher_during_training: True
+  load_teacher_weights: True
+NACF:
+  inherit_from: NAB
+  decoder: TwoStageTransformerDecoder
+  visual_word_generation: True
+  demand: [VERB, NOUN]
+  use_ct: True
+  nv_weights: [0.8, 1.0]
+PointerGen:
+  inherit_from: Transformer
+  pointer: Pointer
+  retrieval: True
+  retrieval_topk: 20
+  copy_scale: 1.0
+  exclude_eos: True
+  has_retrieval_embs: False
+  has_retrieval_rnn: False

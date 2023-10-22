@@ -1,0 +1,26 @@
+base_freelayers:
+  dim_hidden: 512                   # dimension of the hidden states
+  encoder_dropout_prob: 0.5         # the dropout in the encoder
+  hidden_dropout_prob: 0.5          # the dropout in Transformer sublayers' output
+  attention_probs_dropout_prob: 0.1 # the dropout in Transformer's attentions
+  trainable_pe: true                # use trainable positional embedding in Transformer
+  #num_attention_heads: 8            # the number of attention heads in self- and cross-attention layers in Transformer
+  intermediate_size: 2048           # dimension of Feed-Forward Network
+  hidden_act: relu                  # the activation function in Feed-Forward Network
+  layer_norm_eps: !!float 1e-12
+base:
+  inherit_from: base_freelayers
+  num_hidden_layers_decoder: 1      # the number of Transformer decoder's layers
+  num_hidden_layers_encoder: 1
+large:
+  # the settings used in VATEX (PRCV'22)
+  inherit_from: base
+  dim_hidden: 1024
+  intermediate_size: 4096
+  num_attention_heads: 16
+median:
+  # the settings used in VATEX (TIP)
+  inherit_from: base
+  dim_hidden: 768
+  intermediate_size: 3072
+  num_attention_heads: 12

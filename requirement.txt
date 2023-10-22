@@ -1,0 +1,15 @@
+torch
+torchvision
+pytorch-lightning==1.5.1
+pandas
+h5py
+nltk
+pillow
+wget
+
+# calculate automatic metrics for video captioning
+pycocoevalcap
+pycocotools
+
+# install clip for feature extraction or analysis
+git+https://github.com/openai/CLIP.git

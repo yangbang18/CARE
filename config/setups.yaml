@@ -1,0 +1,7 @@
+naive:
+  save_csv: True
+multiple_optimizer:
+  save_csv: True
+  # `MultipleOptimizerModel` apply a lower learning rate 
+  # on encoder & predictor after a specific epoch
+  wrapper: MultipleOptimizerModel

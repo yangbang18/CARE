@@ -1,0 +1,104 @@
+diff_feats:
+  scope_format: [
+    "{}_{}_{}",
+    [arch, feats, modality]
+  ]
+
+Base:
+  inherit_from: diff_feats
+
+Concept:
+  setup: multiple_optimizer
+  lowlr_start_epoch: 10
+
+  # carry out attribute prediction (i.e., concept detection) during training
+  attribute_prediction: True
+  # use detected attributes (concepts) to assist captioning
+  use_attr: True
+  # get mean pooled features of all modalities and then concat them along the channel axis
+  attribute_prediction_mean_pooling: True
+  attribute_prediction_channel_concat: True
+
+  scope_format: [
+    "{}_{}_{}_{}_Nc{}_Nk{}_{}_{}_Nr{}_bias{:d}", 
+    [
+      arch,                       # default value: base
+      feats,                      # required                
+      decoder_modality_flags,     # required
+      predictor_modality_flags,   # required
+      attribute_prediction_k,     # default value: 500
+      use_attr_topk,              # default value: 30
+      use_attr_flags,             # default value: G1Lc
+      retrieval_arch,             # default value: ViT
+      retrieval_topk,             # default value: 20
+      add_hybrid_attention_bias,  # default value: False
+    ]
+  ]
+
+CARE:
+  inherit_from: Concept
+  attribute_prediction_k: 500
+  use_attr_topk: 30
+  use_attr_flags: G1Lc # GSG (Emb-Add) + LSG (Concat then HybridAttention)
+  retrieval_arch: ViT
+  retrieval_topk: 20
+  add_hybrid_attention_bias: True
+  scope_format: [
+    "{}_{}_{}_{}", 
+    [
+      arch,                       # default value: base
+      feats,                      # required                
+      decoder_modality_flags,     # required
+      predictor_modality_flags,   # required
+    ]
+  ]
+
+CABase:
+  inherit_from: CARE
+  use_attr_flags: G0L1 # no GSG, LSG (Attention)
+  attr_layer_pos: cross2attr # ``Cross -> Semantic'' variant
+  predictor_modality_flags: V # visual-driven concept detection
+  add_hybrid_attention_bias: False
+  scope_format: [
+    "{}_{}_{}", 
+    [
+      arch,                       # default value: base
+      feats,                      # required                
+      decoder_modality_flags,     # required
+    ]
+  ]
+
+
+
+
+VAP:
+  attribute_prediction: True
+  attribute_prediction_flags: 'V'
+  attribute_prediction_sparse_sampling: True
+  scope_format: [
+    "{}_attr{}_{}_{}", 
+    [arch, attribute_prediction_k, feats, modality]
+  ]
+VAP_SS0:
+  inherit_from: VAP
+  attribute_prediction_sparse_sampling: False
+TAP:
+  attribute_prediction: True
+  attribute_prediction_flags: 'I'
+  scope_format: [
+    "{}_attr{}_{}_{}", 
+    [arch, attribute_prediction_k, feats, modality]
+  ]
+TAP_RNN:
+  inherit_from: TAP
+  attribute_prediction_flags: 'S'
+  TAP_ln: True
+  TAP_pos: True
+DAP:
+  inherit_from: [VAP, TAP]
+  attribute_prediction_flags: 'VI'
+DAP_RNN:
+  inherit_from: DAP
+  attribute_prediction_flags: 'VS'
+  TAP_ln: True
+  TAP_pos: True
