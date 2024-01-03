@@ -63,7 +63,7 @@ pip install -r requirement.txt
 ## Running
 
 ### Overview
-**1. Supported datasets**
+**1. Supported datasets** (please follow [README_DATA.md](/README_DATA.md) to prepare data)
 - `MSVD`
 - `MSRVTT`
 - `VATEX`
