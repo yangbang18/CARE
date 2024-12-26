@@ -59,7 +59,7 @@ Please remember to modify `base_data_path` in [config/Constants.py](config/Const
         <td>MSRVTT</td><td><a href="http://ms-multimedia-challenge.com/2016/dataset">Link (expired)</a></td><td><a href="https://pkueducn-my.sharepoint.com/:u:/g/personal/2101112290_pkueducn_onmicrosoft_com/EW8dnlrbXrhPpHCzqUWYBmEBy_15l4nQuZBuIS2akdIWwg?e=mxCEwZ">Onedrive</a>, <a href="https://disk.pku.edu.cn/link/AACF5DF7B019D64AA7A956E99A5A3201ED">PKU Yun</a> (6.1G)</td>
     </tr>
     <tr align="center">
-        <td>VATEX</td><td><a href="https://eric-xw.github.io/vatex-website/download.html">Link</a></td><td><a href="https://pkueducn-my.sharepoint.com/:u:/g/personal/2101112290_pkueducn_onmicrosoft_com/EbznKwMvV-1FsxxxRvbiu1cB5aC-NTspM1y5zkyJq6rZSQ?e=IcpHpT">Onedrive</a>, <a href="https://disk.pku.edu.cn/link/AA70A2F20E92AA48F48153C82119347504">PKU Yun</a> (37.3G)</td>
+        <td>VATEX</td><td><a href="https://eric-xw.github.io/vatex-website/download.html">Link</a></td><td><a href="https://pkueducn-my.sharepoint.com/:u:/g/personal/2101112290_pkueducn_onmicrosoft_com/EbznKwMvV-1FsxxxRvbiu1cB5aC-NTspM1y5zkyJq6rZSQ?e=IcpHpT">Onedrive</a>, <a href="https://disk.pku.edu.cn/link/AA70A2F20E92AA48F48153C82119347504">PKU Yun</a> (37.3G); <a href="https://pan.baidu.com/s/1Vr1ppSCmKBNfMNfSf0w2rA">Baidu Yun</a> (extract code: t3ge)</td>
     </tr>
 </table>
 </div>
